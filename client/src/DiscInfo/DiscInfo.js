@@ -18,7 +18,7 @@ class DiscInfo extends Component {
     constructor(props) {
         super(props);
         const selectedTracks = {};
-
+        console.debug('tracks: ', this.props.tracks);
         this.props.tracks && this.props.tracks.map((trackInfo, trackId) => {
             selectedTracks[trackId] = trackInfo.isAutoSelected;
         });
@@ -136,7 +136,7 @@ class DiscInfo extends Component {
                         </Table>
                     </FormGroup>
                     <FormGroup>
-                        <Button onClick={(e) => this.ripTracks(e)} />
+                        <Button onClick={(e) => this.ripTracks(e)}>Rip Tracks</Button>
                     </FormGroup>
                 </fieldset>
             </Form>
