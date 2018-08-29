@@ -54,7 +54,7 @@ class DiscPanel extends Component {
                     </CardBody>
                     <CardBody>
                         {
-                            this.state.discInfo.tracks?
+                            this.state.discInfo.tracks && this.state.discInfo.tracks.length > 0 ?
                                 ''
                             :
                                 <DiscInfo
