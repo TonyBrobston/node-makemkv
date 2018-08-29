@@ -17,7 +17,6 @@ import {
 class DiscInfo extends Component {
     constructor(props) {
         super(props);
-        console.debug('DiscInfo props: ', props);
         const selectedTracks = {};
 
         this.props.tracks && this.props.tracks.map((trackInfo, trackId) => {
