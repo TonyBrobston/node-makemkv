@@ -118,7 +118,7 @@ class DiscInfo extends Component {
                                     return <tr onClick={(e) => this.toggleTrack(trackId)}>
                                         <td>
                                             <Input
-                                                checked={false}
+                                                checked={this.state.selectedTracks[trackId]}
                                                 name="selectTrack"
                                                 onChange={(e) => this.toggleTrack(trackId)}
                                                 type="checkbox"
@@ -136,7 +136,7 @@ class DiscInfo extends Component {
                         </Table>
                     </FormGroup>
                     <FormGroup>
-                        <Button onClick={(e) => this.ripTracks(e)}>Rip Tracks</Button>
+                        <Button onClick={(e) => this.ripTracks(e)} />
                     </FormGroup>
                 </fieldset>
             </Form>

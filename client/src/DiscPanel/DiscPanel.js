@@ -53,10 +53,15 @@ class DiscPanel extends Component {
                         </Button>
                     </CardBody>
                     <CardBody>
-                        <DiscInfo
-                            driveState={this.props.driveState}
-                            {...this.state.discInfo}
-                        />
+                        {
+                            this.state.discInfo.tracks?
+                                ''
+                            :
+                                <DiscInfo
+                                    driveState={this.props.driveState}
+                                    {...this.state.discInfo}
+                                />
+                        }
                     </CardBody>
                 </Card>
             </div>
