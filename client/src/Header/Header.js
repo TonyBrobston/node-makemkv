@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
 import {
     Button,
     Collapse,
@@ -9,16 +8,18 @@ import {
     Label,
     Input,
     Navbar,
-    NavbarBrand,
+    NavbarBrand
 } from 'reactstrap';
 
-
 class Header extends Component {
-
-    render(){
-        return(
+    render() {
+        return (
             <div className="Header">
-                <Navbar color="inverse" inverse toggleable>
+                <Navbar
+                    color="inverse"
+                    inverse
+                    toggleable
+                >
                     <NavbarBrand href="/">Node MakeMKV</NavbarBrand>
                     <Collapse navbar>
                         <Form inline>
@@ -26,7 +27,10 @@ class Header extends Component {
                                 <Label for="saveDirectory">
                                     Save Directory
                                 </Label>
-                                <Input type="text" id="saveDirectory" />
+                                <Input
+                                    id="saveDirectory"
+                                    type="text"
+                                />
                             </FormGroup>
                         </Form>
                     </Collapse>

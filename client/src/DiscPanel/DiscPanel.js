@@ -1,27 +1,23 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
 import {
     Button,
     Card,
     CardBody,
-    CardTitle,
+    CardTitle
 } from 'reactstrap';
 
 import DiscInfo from '../DiscInfo';
-
 import {
     actionDiscInfo,
-    subscribeToDiscInfo,
+    subscribeToDiscInfo
 } from '../api.js';
 
-
 class DiscPanel extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            discInfo: {},
+            discInfo: {}
         };
         subscribeToDiscInfo(this.handleDiscInfo, this, this.props.driveId);
     }
@@ -30,7 +26,7 @@ class DiscPanel extends Component {
         console.log('Got disc info');
         console.debug(discInfo);
         this.setState({
-            discInfo: discInfo[this.props.driveId] || {},
+            discInfo: discInfo[this.props.driveId] || {}
         });
     }
 
@@ -38,8 +34,8 @@ class DiscPanel extends Component {
         actionDiscInfo(this.props.driveId);
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="DiscPanel">
                 <Card>
                     <CardBody>
@@ -52,14 +48,15 @@ class DiscPanel extends Component {
                                 { this.props.discName || 'No Disc' }
                             </span>
                         </CardTitle>
-                        <Button onClick={ () => this.refreshDiscInfo() }>
+                        <Button onClick={() => this.refreshDiscInfo()}>
                             <span className="glyphicon glyphicon-refresh" />
                         </Button>
                     </CardBody>
                     <CardBody>
-                        <DiscInfo driveState={ this.props.driveState }
-                                  { ...this.state.discInfo }
-                                  />
+                        <DiscInfo
+                            driveState={this.props.driveState}
+                            {...this.state.discInfo}
+                        />
                     </CardBody>
                 </Card>
             </div>
@@ -70,7 +67,7 @@ class DiscPanel extends Component {
 DiscPanel.propTypes = {
     driveId: PropTypes.number.isRequired,
     discName: PropTypes.string.isRequired,
-    driveState: PropTypes.string.isRequired,
+    driveState: PropTypes.string.isRequired
 };
 
 DiscPanel.defaultProps = {

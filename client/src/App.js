@@ -1,29 +1,24 @@
-import React, { Component } from 'react';
-
+import React, {Component} from 'react';
 import {
     Col,
     Container,
-    Row,
+    Row
 } from 'reactstrap';
 
 import logo from './logo.svg';
-
 import Header from './Header';
 import DiscPanel from './DiscPanel';
-
 import {
-    subscribeToDriveInfo,
+    subscribeToDriveInfo
 } from './api.js';
 
 import './App.css';
 
-
 class App extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            driveInfo: {},
+            driveInfo: {}
         };
         subscribeToDriveInfo(this.handleDriveInfo, this);
     }
@@ -32,29 +27,36 @@ class App extends Component {
         console.log('Got Drive Info');
         console.debug(driveInfo);
         this.setState({
-            driveInfo: driveInfo,
+            driveInfo
         });
     }
 
-    render(){
-        return(
-            <Container className="App" fluid>
+    render() {
+        return (
+            <Container
+                className="App"
+                fluid
+            >
                 <Header />
                 <Row>
                     {Object.keys(this.state.driveInfo).map((driveId) => {
-                        let driveInfo = this.state.driveInfo[driveId];
-                        return <Col md="6" xs="12">
-                            <DiscPanel driveId={driveId}
-                                       discName={driveInfo.discName}
-                                       driveState={driveInfo.driveState}
+                        const driveInfo = this.state.driveInfo[driveId];
+
+                        return <Col
+                            md="6"
+                            xs="12"
+                               >
+                            <DiscPanel
+                                discName={driveInfo.discName}
+                                driveId={driveId}
+                                driveState={driveInfo.driveState}
                             />
-                        </Col>
+                               </Col>;
                     })}
                 </Row>
             </Container>
         );
     }
-
 }
 
 export default App;

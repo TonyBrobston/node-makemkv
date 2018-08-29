@@ -1,13 +1,14 @@
 import io from 'socket.io-client';
 
 import {
-    SERVER_PORT,
+    SERVER_PORT
 } from './settings.json';
 
 const socket = io();
 
 function waitForSocket(callback, ...args) {
     console.debug('Waiting for socket to become available.');
+
     if (socket.id) {
         console.debug('Socket is available.');
         callback(...args);
@@ -36,7 +37,7 @@ function doAction(actionName, sendData) {
 
 // Listen for updates to disc-level information on a drive.
 function subscribeToDiscInfo(callback, context, driveId) {
-    subscribeTo('DiscInfo', callback, context, { driveId });
+    subscribeTo('DiscInfo', callback, context, {driveId});
 }
 
 // Listen for updates to any drive-level information.
@@ -46,17 +47,17 @@ function subscribeToDriveInfo(callback, context) {
 
 // Start ripping tracks on a drive.
 function actionRipTracks(discName, driveId, trackIds) {
-    doAction('RipTracks', { discName, driveId, trackIds });
+    doAction('RipTracks', {discName, driveId, trackIds});
 }
 
 // Command server to get disc information for a drive.
 function actionDiscInfo(driveId) {
-    doAction('DiscInfo', { driveId });
+    doAction('DiscInfo', {driveId});
 }
 
 export {
     actionDiscInfo,
     actionRipTracks,
     subscribeToDiscInfo,
-    subscribeToDriveInfo,
+    subscribeToDriveInfo
 };
