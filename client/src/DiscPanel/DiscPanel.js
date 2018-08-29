@@ -55,12 +55,12 @@ class DiscPanel extends Component {
                     <CardBody>
                         {
                             this.state.discInfo.tracks && this.state.discInfo.tracks.length > 0 ?
-                                ''
-                            :
                                 <DiscInfo
                                     driveState={this.props.driveState}
                                     {...this.state.discInfo}
                                 />
+                            :
+                                ''
                         }
                     </CardBody>
                 </Card>
