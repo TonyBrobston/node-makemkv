@@ -12,14 +12,15 @@ import {
 
 import {
     actionRipTracks
-} from '../api.js';
+} from '../api';
 
 class DiscInfo extends Component {
     constructor(props) {
         super(props);
         const selectedTracks = {};
+
         console.debug('tracks: ', this.props.tracks);
-        this.props.tracks && this.props.tracks.map((trackInfo, trackId) => {
+        this.props.tracks.map((trackInfo, trackId) => {
             selectedTracks[trackId] = trackInfo.isAutoSelected;
         });
         this.state = {
@@ -71,80 +72,85 @@ class DiscInfo extends Component {
     }
 
     render() {
-        return (<div>
-            <h1 className={this.props.name ? 'invisible' : ''}>
-                Drive is {this.props.driveState}
-            </h1>
-            <Form
-                className={!this.props.name ? 'invisible' : ''}
-                onSubmit={this.handleSubmit}
-            >
-                <fieldset {...(this.props.isRipping ? {disabled: 'disabled'} : {})}>
-                    <FormGroup>
-                        <Label for="discName">
-                            Name
-                        </Label>
-                        <Input
-                            onChange={
-                                (event) => {
-                                    this.setState({discName: event.target.value});
+        return (
+            <div>
+                <h1 className={this.props.name ? 'invisible' : ''}>
+                    {'Drive is '}{this.props.driveState}
+                </h1>
+                <Form
+                    className={!this.props.name ? 'invisible' : ''}
+                    onSubmit={this.handleSubmit}
+                >
+                    <fieldset {...(this.props.isRipping ? {disabled: 'disabled'} : {})}>
+                        <FormGroup>
+                            <Label for="discName">
+                                {'Name'}
+                            </Label>
+                            <Input
+                                onChange={
+                                    (event) => {
+                                        this.setState({discName: event.target.value});
+                                    }
                                 }
-                            }
-                            type="text"
-                            value={this.state.discName || this.props.name}
-                        />
-                    </FormGroup>
-                    <FormGroup name="discInfo">
-                        <Table className="discInfo">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <Input
-                                            type="checkbox"
-                                            {...(this.state.checkAll ? {checked: 'checked'} : {})}
-                                            onChange={(e) => this.toggleAllTracks(e)}
-                                        />
-                                    </th>
-                                    <th>#</th>
-                                    <th>Source</th>
-                                    <th>Chptrs</th>
-                                    <th>Size</th>
-                                    <th>Streams</th>
-                                    <th>Segments</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.props.tracks && this.props.tracks.map(function (trackInfo, trackId) {
-                                    return <tr onClick={(e) => this.toggleTrack(trackId)}>
-                                        <td>
+                                type="text"
+                                value={this.state.discName || this.props.name}
+                            />
+                        </FormGroup>
+                        <FormGroup name="discInfo">
+                            <Table className="discInfo">
+                                <thead>
+                                    <tr>
+                                        <th>
                                             <Input
-                                                checked={this.state.selectedTracks[trackId]}
-                                                name="selectTrack"
-                                                onChange={(e) => this.toggleTrack(trackId)}
                                                 type="checkbox"
-                                            />s
-                                        </td>
-                                        <td>{ trackInfo.orderWeight }</td>
-                                        <td>{ trackInfo.name }</td>
-                                        <td>{ trackInfo.chapterCount }</td>
-                                        <td>{ trackInfo.diskSize }</td>
-                                        <td>{ trackInfo.streams.length }</td>
-                                        <td>{ trackInfo.segmentsMap }</td>
-                                    </tr>;
-                                })}
-                            </tbody>
-                        </Table>
-                    </FormGroup>
-                    <FormGroup>
-                        <Button onClick={(e) => this.ripTracks(e)} />
-                    </FormGroup>
-                </fieldset>
-            </Form>
-                </div>);
+                                                {...(this.state.checkAll ? {checked: 'checked'} : {})}
+                                                onChange={(e) => this.toggleAllTracks(e)}
+                                            />
+                                        </th>
+                                        <th>{'#'}</th>
+                                        <th>{'Source'}</th>
+                                        <th>{'Chptrs'}</th>
+                                        <th>{'Size'}</th>
+                                        <th>{'Streams'}</th>
+                                        <th>{'Segments'}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        this.props.tracks && this.props.tracks.map((trackInfo, trackId) => {
+                                            return <tr onClick={() => this.toggleTrack(trackId)}>
+                                                <td>
+                                                    <Input
+                                                        checked={this.state.selectedTracks[trackId]}
+                                                        name="selectTrack"
+                                                        onChange={() => this.toggleTrack(trackId)}
+                                                        type="checkbox"
+                                                    />{'s'}
+                                                </td>
+                                                <td>{ trackInfo.orderWeight }</td>
+                                                <td>{ trackInfo.name }</td>
+                                                <td>{ trackInfo.chapterCount }</td>
+                                                <td>{ trackInfo.diskSize }</td>
+                                                <td>{ trackInfo.streams.length }</td>
+                                                <td>{ trackInfo.segmentsMap }</td>
+                                            </tr>;
+                                        })
+                                    }
+                                </tbody>
+                            </Table>
+                        </FormGroup>
+                        <FormGroup>
+                            <Button onClick={(e) => this.ripTracks(e)} />
+                        </FormGroup>
+                    </fieldset>
+                </Form>
+            </div>
+        );
     }
 }
 
 DiscInfo.propTypes = {
+    driveId: PropTypes.string,
     driveState: PropTypes.string.isRequired,
     isRipping: PropTypes.bool,
     metadataLngCode: PropTypes.string.isRequired,
@@ -153,31 +159,31 @@ DiscInfo.propTypes = {
     orderWeight: PropTypes.number.isRequired,
     panelTitle: PropTypes.string,
     sanitized: PropTypes.string,
-    treeInfo: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    volumeName: PropTypes.string.isRequired,
     tracks: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        isAutoSelected: PropTypes.bool,
-        ripStatus: PropTypes.oneOf(['none', 'busy', 'fail', 'success']),
         chapterCount: PropTypes.number.isRequired,
         diskSize: PropTypes.string.isRequired,
         diskSizeBytes: PropTypes.number.isRequired,
         duration: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        isAutoSelected: PropTypes.bool,
         metadataLngCode: PropTypes.string.isRequired,
         metadataLngName: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         orderWeight: PropTypes.number.isRequired,
         outputFilename: PropTypes.string.isRequired,
         panelTitle: PropTypes.string,
+        ripStatus: PropTypes.oneOf(['none', 'busy', 'fail', 'success']),
         segmentsCount: PropTypes.number.isRequired,
         segmentsMap: PropTypes.string.isRequired,
         sourceFileName: PropTypes.string.isRequired,
-        treeInfo: PropTypes.string.isRequired,
         streams: PropTypes.arrayOf(
             PropTypes.objectOf(PropTypes.string)
-        )
-    }))
+        ),
+        treeInfo: PropTypes.string.isRequired
+    })),
+    treeInfo: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    volumeName: PropTypes.string.isRequired
 };
 
 DiscInfo.defaultProps = {

@@ -59,7 +59,7 @@ class DiscPanel extends Component {
                                     driveState={this.props.driveState}
                                     {...this.state.discInfo}
                                 />
-                            :
+                                :
                                 ''
                         }
                     </CardBody>
