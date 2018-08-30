@@ -1,7 +1,5 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import {
-    Button,
     Collapse,
     Form,
     FormGroup,
@@ -11,34 +9,31 @@ import {
     NavbarBrand
 } from 'reactstrap';
 
-class Header extends Component {
-    render() {
-        return (
-            <div className="Header">
-                <Navbar
-                    color="inverse"
-                    inverse
-                    toggleable
-                >
-                    <NavbarBrand href="/">Node MakeMKV</NavbarBrand>
-                    <Collapse navbar>
-                        <Form inline>
-                            <FormGroup>
-                                <Label for="saveDirectory">
-                                    Save Directory
-                                </Label>
-                                <Input
-                                    id="saveDirectory"
-                                    type="text"
-                                />
-                            </FormGroup>
-                        </Form>
-                    </Collapse>
-                </Navbar>
-            </div>
-        );
-    }
-}
+const Header = () =>
+    <div className="Header">
+        <Navbar
+            color="inverse"
+            inverse
+            toggleable
+        >
+            <NavbarBrand href="/">
+                {'Node MakeMKV'}
+            </NavbarBrand>
+            <Collapse navbar>
+                <Form inline>
+                    <FormGroup>
+                        <Label for="saveDirectory">
+                            {'Save Directory'}
+                        </Label>
+                        <Input
+                            id="saveDirectory"
+                            type="text"
+                        />
+                    </FormGroup>
+                </Form>
+            </Collapse>
+        </Navbar>
+    </div>;
 
 Header.propTypes = {
 };

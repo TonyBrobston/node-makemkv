@@ -117,8 +117,8 @@ class DiscInfo extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        this.props.tracks && this.props.tracks.map((trackInfo, trackId) => {
-                                            return <tr onClick={() => this.toggleTrack(trackId)}>
+                                        this.props.tracks && this.props.tracks.map((trackInfo, trackId) =>
+                                            <tr onClick={() => this.toggleTrack(trackId)}>
                                                 <td>
                                                     <Input
                                                         checked={this.state.selectedTracks[trackId]}
@@ -133,8 +133,8 @@ class DiscInfo extends Component {
                                                 <td>{ trackInfo.diskSize }</td>
                                                 <td>{ trackInfo.streams.length }</td>
                                                 <td>{ trackInfo.segmentsMap }</td>
-                                            </tr>;
-                                        })
+                                            </tr>
+                                        )
                                     }
                                 </tbody>
                             </Table>

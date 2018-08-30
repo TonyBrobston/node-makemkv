@@ -11,7 +11,7 @@ import DiscInfo from '../DiscInfo';
 import {
     actionDiscInfo,
     subscribeToDiscInfo
-} from '../api.js';
+} from '../api';
 
 class DiscPanel extends Component {
     constructor(props) {
@@ -43,13 +43,13 @@ class DiscPanel extends Component {
                             <span>
                                 { this.props.driveId }
                             </span>
-                            &nbsp;-&nbsp;
+                            {'&nbsp;-&nbsp;'}
                             <span>
                                 { this.props.discName || 'No Disc' }
                             </span>
                         </CardTitle>
                         <Button onClick={() => this.refreshDiscInfo()}>
-                            Refresh Disc
+                            {'Refresh Disc'}
                         </Button>
                     </CardBody>
                     <CardBody>
@@ -70,8 +70,8 @@ class DiscPanel extends Component {
 }
 
 DiscPanel.propTypes = {
-    driveId: PropTypes.number.isRequired,
     discName: PropTypes.string.isRequired,
+    driveId: PropTypes.number.isRequired,
     driveState: PropTypes.string.isRequired
 };
 

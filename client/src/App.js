@@ -5,13 +5,11 @@ import {
     Row
 } from 'reactstrap';
 
-import logo from './logo.svg';
 import Header from './Header';
 import DiscPanel from './DiscPanel';
 import {
     subscribeToDriveInfo
-} from './api.js';
-
+} from './api';
 import './App.css';
 
 class App extends Component {
@@ -42,16 +40,18 @@ class App extends Component {
                     {Object.keys(this.state.driveInfo).map((driveId) => {
                         const driveInfo = this.state.driveInfo[driveId];
 
-                        return <Col
-                            md="6"
-                            xs="12"
-                               >
-                            <DiscPanel
-                                discName={driveInfo.discName}
-                                driveId={driveId}
-                                driveState={driveInfo.driveState}
-                            />
-                               </Col>;
+                        return (
+                            <Col
+                                md="6"
+                                xs="12"
+                            >
+                                <DiscPanel
+                                    discName={driveInfo.discName}
+                                    driveId={driveId}
+                                    driveState={driveInfo.driveState}
+                                />
+                            </Col>
+                        );
                     })}
                 </Row>
             </Container>
