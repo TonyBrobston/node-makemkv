@@ -2,6 +2,7 @@ client/build/*
 *.log
 settings.json
 conversion_profile.xml
+**/dist/
 
 # PyCharm
 .idea/*
@@ -12,6 +13,9 @@ client/node_modules
 
 # testing
 /coverage
+coverage
+.coverage/**
+.coverage
 
 # misc
 .DS_Store
