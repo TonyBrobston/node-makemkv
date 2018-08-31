@@ -10,6 +10,7 @@ import DiscPanel from './DiscPanel';
 import {
     subscribeToDriveInfo
 } from './api';
+import './App.css';
 
 class App extends Component {
     constructor(props) {
@@ -36,24 +37,22 @@ class App extends Component {
             >
                 <Header />
                 <Row>
-                    {
-                        Object.keys(this.state.driveInfo).map((driveId) => {
-                            const driveInfo = this.state.driveInfo[driveId];
+                    {Object.keys(this.state.driveInfo).map((driveId) => {
+                        const driveInfo = this.state.driveInfo[driveId];
 
-                            return (
-                                <Col
-                                    md="6"
-                                    xs="12"
-                                >
-                                    <DiscPanel
-                                        discName={driveInfo.discName}
-                                        driveId={driveId}
-                                        driveState={driveInfo.driveState}
-                                    />
-                                </Col>
-                            );
-                        })
-                    }
+                        return (
+                            <Col
+                                md="6"
+                                xs="12"
+                            >
+                                <DiscPanel
+                                    discName={driveInfo.discName}
+                                    driveId={driveId}
+                                    driveState={driveInfo.driveState}
+                                />
+                            </Col>
+                        );
+                    })}
                 </Row>
             </Container>
         );

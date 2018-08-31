@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import DiscInfo from '../../src/DiscInfo/DiscInfo';
+import DiscPanel from './DiscPanel';
 
-test('DiscInfo renders correctly', () => {
+test('DiscPanel renders correctly', () => {
     const tree = renderer.create(
-        <DiscInfo />
+        <DiscPanel />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();

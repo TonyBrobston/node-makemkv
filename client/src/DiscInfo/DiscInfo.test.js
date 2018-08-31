@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Header from '../../src/Header/Header';
+import DiscInfo from './DiscInfo';
 
-test('Header renders correctly', () => {
+test('DiscInfo renders correctly', () => {
     const tree = renderer.create(
-        <Header />
+        <DiscInfo />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
