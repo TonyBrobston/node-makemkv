@@ -1,0 +1,41 @@
+{
+   "presets": [
+     "stage-2",
+     [
+       "env",
+       {
+         "targets": {
+           "node": 8.11
+         },
+         "useBuiltIns": true
+       }
+     ]
+   ],
+   "env": {
+     "client": {
+       "presets": [
+         "react",
+         ["env", {
+           "targets": {
+             "browsers": ["last 2 versions"]
+           },
+           "useBuiltIns": true
+         }]
+       ]
+     },
+     "test": {
+       "presets": [
+         "react",
+         [
+           "env",
+           {
+             "targets": {
+               "node": 8.11
+             },
+             "useBuiltIns": true
+           }
+         ]
+       ]
+     }
+   }
+ }

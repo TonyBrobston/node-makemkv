@@ -8,6 +8,7 @@ module.exports = {
         'max-params': [0],
         'consistent-return': [0],
         'react/jsx-key': [0],
-        'complexity': [0]
+        'complexity': [0],
+        'jest/consistent-test-it': [0],
     }
 };

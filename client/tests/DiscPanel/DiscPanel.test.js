@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Header from './Header';
+import DiscPanel from '../../src/DiscPanel/DiscPanel';
 
-test('Header renders correctly', () => {
+test('DiscPanel renders correctly', () => {
     const tree = renderer.create(
-        <Header />
+        <DiscPanel />
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
