@@ -23,6 +23,7 @@ class DiscInfo extends Component {
         this.props.tracks.map((trackInfo, trackId) => {
             selectedTracks[trackId] = trackInfo.isAutoSelected;
         });
+        console.debug('selectedTracks: ', selectedTracks);
         this.state = {
             checkAll: false,
             discName: false,
