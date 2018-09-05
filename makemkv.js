@@ -208,12 +208,12 @@ class MakeMkv {
     ripTracks(saveDirectory, driveId, trackIds, callback) {
 
         if (this.ripQueue.driveId === undefined) {
-            this.ripQueue.driveId = new Set(trackIds);
+            this.ripQueue.driveId = trackIds;
         } else if (trackIds) {
-            trackIds.map((trackId) => this.ripQueue.driveId.add(trackId));
+            trackIds.forEach((trackId) => this.ripQueue.driveId.push(trackId));
         }
 
-        if (!this.ripQueue.driveId.size) {
+        if (!this.ripQueue.driveId.length) {
             // @TODO: What to do here?
             return;
         }
@@ -224,7 +224,7 @@ class MakeMkv {
         };
 
         this.ripTrack(
-            saveDirectory, driveId, Array.from(this.ripQueue.driveId).pop(), newCallback
+            saveDirectory, driveId, this.ripQueue.driveId.pop(), newCallback
         );
 
     }
