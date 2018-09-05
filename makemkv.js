@@ -256,7 +256,7 @@ class MakeMkv {
             callback(trackId, isSuccess, strOutput);
         };
 
-        this._spawn(command, newCallback);
+        this._spawn(command, MAKEMKVCON_PATH, newCallback);
 
     }
 
